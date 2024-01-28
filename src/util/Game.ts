@@ -1,6 +1,6 @@
 import * as pokemons from "./Pokemon.json";
 import * as typeMatchups from "./Types.json"
-import { rng, shuffle } from "./util";
+import { rng, shuffle, sortByKey } from "./util";
 
 type PokeData = {
     dex: number,
@@ -12,29 +12,29 @@ type PokeData = {
     variants?: number
 }
 
-const pokemonData = (pokemons as any).default;
+export const pokemonData = (pokemons as any).default;
 const typeData = typeMatchups as any;
 
 export const gameCategories = [
     {
-        title: "Increasing Nationl Dex",
-        desc: "Order the pokemon such that their corresponding national dex numbers increase",
-        generate: 0
+        title: "National Dex",
+        info: "Order the pokemon such that their corresponding national dex numbers increase",
+        id: 0
     },
     {
-        title: "Increasing Base Stat",
-        desc: "Order the pokemon such that their corresponding $ increase",
-        generate: 0
+        title: "Base Stat",
+        info: "Order the pokemon such that their corresponding $ increase",
+        id: 1
     },
     {
         title: "Supereffective Chain",
-        desc: "Order the pokemon such that a move of at least one type of the current pokemon is supereffective against the next pokemon",
-        generate: 1
+        info: "Order the pokemon such that a move of at least one type of the current pokemon is supereffective against the next pokemon",
+        id: 2
     },
     {
-        title: "Name Chain",
-        desc: "Order the pokemon such that the last letter of a pokemon is the first letter of the next",
-        generate: 2
+        title: "Species Name Chain",
+        info: "Order the pokemon such that the last letter of a pokemon is the first letter of the next",
+        id: 3
     }
 ]
 
@@ -49,12 +49,12 @@ const randomizeVariant = (num:number) => {
         `${num}-${rng(0, data.variants - 1)}`;
 }
 
-export const get6Pokemon = () => {  
+export const get6Pokemon = (control: number) => {  
     const keys: {name: string}[] = []
 
     for (let i = 0; i < 6; i++) {
         const num = rng(1, 1025);
-        
+
         const newMon = randomizeVariant(num);
         
         if (keys.map((mon) => mon.name).includes(newMon)) {
@@ -63,8 +63,15 @@ export const get6Pokemon = () => {
             keys.push({name: newMon});
         }
     }
+    
+    let soln: string[] = [];
+    if (control == -1) {
+        soln = sortByKey(pokemonData, keys, "dex");
+    } else {
+        soln = sortByKey(pokemonData, keys, control);
+    }
 
-    return keys;
+    return [soln, keys];
 }
 
 const keyToEffectiveness = (key: string): number => {
@@ -91,7 +98,7 @@ export const getTypeChain = () => {
 
     let lastTypes: string[] = [];
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 6; i++) {
         
         let newKey: string = "";
         if (lastTypes.length == 0) {
@@ -101,7 +108,6 @@ export const getTypeChain = () => {
             
             newKey = newMon;
             lastTypes = monTypes;
-            // console.log(pokemonData[newMon].name, pokemonData[newMon].types);
         } else {
             const weaknesses = findWeaknesses(lastTypes);
             const hasType = Object.keys(pokemonData).filter((key) => pokemonData[key].types
@@ -115,7 +121,9 @@ export const getTypeChain = () => {
         keys.push(newKey);
     }
 
-    console.log(keys.map((key) => pokemonData[key].name));
+    return [keys.reverse(), shuffle(keys.map((key) => {
+        return {name: key}
+    }))];
 }
 
 export const getSpeciesName = (data: PokeData) => {
@@ -155,11 +163,44 @@ export const getNameChain = () => {
         }
     }
 
-    return shuffle(keys.map((key) => {
+    return [keys, shuffle(keys.map((key) => {
         return {name: key}
-    }));
+    }))];
 }
 
 export const generateGame = () => {
     const category = rng(1, gameCategories.length);
+}
+
+export const checkWin = (answers: {name: string}[], category: number, stat: number) => {
+
+    const names: string[] = [];
+    answers.forEach((answer) => names.push(answer.name));
+
+    for (let i = 1; i < names.length; i++) {
+        if (!inOrder(names[i], names[i-1], category, stat)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+const inOrder = (currDex: string, prevDex: string, category: number, stat: number) => {
+    const prevMon = pokemonData[prevDex];
+    const currMon = pokemonData[currDex];
+
+    if (category == 0) {
+        return currMon.dex >= prevMon.dex;
+    } else if (category == 1) {
+        return currMon.stats[stat] >= currMon.stats[stat];
+    } else if (category == 2) {
+        const weaknesses = findWeaknesses(currMon.types);
+        return prevMon.types.some((type: string) => weaknesses.includes(type));
+    } else {
+        const currSpecies = getSpeciesName(currMon);
+        const prevSpecies = getSpeciesName(prevMon);
+
+        return currSpecies[0] == prevSpecies[prevSpecies.length - 1];
+    }
 }

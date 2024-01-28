@@ -5,7 +5,7 @@ const handleFAQClick = () => faqShown.value = !faqShown.value;
 
 const handleClose = () => faqShown.value = false;
 
-const faqShown = ref(false);
+const faqShown = ref<boolean>(false);
 const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
 
 </script>
@@ -24,10 +24,11 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
         <h1 class="title">
             PokeSort
         </h1>
-    
-        <button class="question" @click="handleFAQClick">
-            <v-icon name="pi-unown-question" />
-        </button>
+        <div>
+            <button class="icon" @click="handleFAQClick">
+                <v-icon name="pi-unown-question" />
+            </button>
+        </div>
     </div>
     
 
@@ -50,13 +51,14 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
     margin: 0;
 }
 
-.question {
+.icon {
     border-radius: 3em;
     min-height: 3em;
     min-width: 3em;
+    margin: 0px 1em;
 }
 
-.question:hover {
+.icon:hover {
     background-color: gray;
 }
 
@@ -84,4 +86,12 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
     background-color:red;
 }
 
+.menu {
+    position: fixed;
+    right: 10em;
+    top: 4em;
+    background-color:bisque;
+    padding: 1em;
+    display: flex;
+}
 </style>
