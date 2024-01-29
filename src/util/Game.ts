@@ -193,7 +193,7 @@ const inOrder = (currDex: string, prevDex: string, category: number, stat: numbe
     if (category == 0) {
         return currMon.dex >= prevMon.dex;
     } else if (category == 1) {
-        return currMon.stats[stat] >= currMon.stats[stat];
+        return currMon.stats[stat] >= prevMon.stats[stat];
     } else if (category == 2) {
         const weaknesses = findWeaknesses(currMon.types);
         return prevMon.types.some((type: string) => weaknesses.includes(type));

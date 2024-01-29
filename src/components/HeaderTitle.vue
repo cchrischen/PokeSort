@@ -38,7 +38,7 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
 <style>
 
 .header{
-    background-color:lightgray;
+    
     padding: 20px 50px;
     display: flex;
     justify-content: space-between;
@@ -65,7 +65,7 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
 .faq {
     visibility: hidden;
     position: fixed;
-    background-color: aliceblue;
+    background-color: #f0f8ff;
     width: 50%;
     height: 75%;
     padding: 20px 50px;

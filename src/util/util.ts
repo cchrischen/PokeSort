@@ -45,3 +45,5 @@ export const sortByKey = (data: any, elements: {name: string}[], key: string | n
 
     return work;
 }
+
+export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
