@@ -18,22 +18,22 @@ const typeData = typeMatchups as any;
 export const gameCategories = [
     {
         title: "National Dex",
-        info: "Order the pokemon such that their corresponding national dex numbers increase",
+        info: "Order the species such that their corresponding national dex numbers are non-decreasing. The dex number of regional variants and gimmick forms (Mega/Gmax) are the dex number of their base form.",
         id: 0
     },
     {
         title: "Base Stat",
-        info: "Order the pokemon such that their corresponding $ increase",
+        info: "Order the Pokemon such that their corresponding base stat values listed above are non-decreasing.",
         id: 1
     },
     {
         title: "Supereffective Chain",
-        info: "Order the pokemon such that a move of at least one type of the current pokemon is supereffective against the next pokemon",
+        info: "Order the Pokemon such that a move of at least one type of the current Pokemon is supereffective against the next Pokemon. Ignore abilities.",
         id: 2
     },
     {
         title: "Species Name Chain",
-        info: "Order the pokemon such that the last letter of a pokemon is the first letter of the next",
+        info: "Order the Pokemon such that the last letter of a Pokemon species is the first letter of the next.",
         id: 3
     }
 ]

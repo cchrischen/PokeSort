@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import * as TypesJSON from "../util/Types.json";
     import { pokemonData } from "../util/Game";
     import { computed, ref } from "vue";
 
@@ -10,12 +11,15 @@
         order: Number
     })
 
+    const TypeData: any = TypesJSON;
+
     const dex = computed(() => props.dex ? props.dex : "1-0");
+    const types = computed<string[]>(() => pokemonData[dex.value].types);
 
     const pokedata = ref(pokemonData[dex.value])
     const sprite = ref(pokedata.value.sprite ?? "")
 
-    const cursorStatus = computed(() => props.enabled ? {"cursor": "move"} : {"cursor": "default"})
+    const cursorStatus = computed(() => props.enabled ? {"cursor": "move"} : {"cursor": "default"});
 </script>
 
 <template>
@@ -36,7 +40,7 @@
                 {{ pokemonData[dex].stats[stat ?? 0] }}
             </h2>
             <h2 v-else-if="category == 2">
-                {{ pokemonData[dex].types }}
+                <img class="type" v-for="t in types" :key="t" :src="TypeData[t].icon" height="40px" weight="40px">
             </h2>
         </div>
     </div>
@@ -63,9 +67,8 @@
     align-items: inherit;
 }
 
-p, h1, h2 {
-    font-size: 20px;
-    margin: 0;
+.type {
+    margin: 0px 5px;
 }
 
 </style>

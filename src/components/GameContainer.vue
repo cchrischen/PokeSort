@@ -34,7 +34,8 @@ const getNewGame = () => {
 
 const checkAnswer = () => {
     if (checkWin(currentMons.value, category.value, statIdx.value ?? -1)) {
-        showSolution();
+        gameState.value = 1;
+        enabled.value = false;
     } else {
         gameState.value = -1;
     }
@@ -62,7 +63,7 @@ const dragOptions = ref({
   animation: 100,
   group: 'description',
   ghostClass: 'ghost',
-  dragClass: 'dragMon'
+  dragClass: 'drag'
 });
 
 getNewGame();
@@ -78,6 +79,7 @@ getNewGame();
                 </option>
             </select>
             <h3 v-if="stat">{{ stat }}</h3>
+            <h4 id="info">{{ gameCategories[category].info }}</h4>
         </div>
 
         <div v-if="gameState != 1" class="order">
@@ -120,22 +122,25 @@ getNewGame();
     height: auto;
     padding: 20px;
     background-color: #f0f8ff;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 #title {
-    font-size: 3em;
+    font-size: 2.5em;
     margin: 0 0 10px 0;
 }
 
 .desc{
     text-align: center;
+    display: inherit;
+    flex-direction: inherit;
+    align-items: center;
 }
 
 .order {
     margin-top: 30px;
-    padding: 30px 20px;
+    padding: 20px;
     border-radius: 20px;
+    border: 1px solid black;
 }
 
 .draggableRow {
@@ -152,7 +157,11 @@ getNewGame();
     font-family: inherit;
 }
 
-.dragMon{
+.ghost {
+    background-color: #d3e7f7;
+}
+
+.drag{
     opacity: 0.5;
     background-color: transparent;
     box-shadow: none;
@@ -166,8 +175,7 @@ getNewGame();
 }
 
 .btn {
-    font-size: 2em;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5em;
     padding: 10px;
     text-transform: uppercase;
     background: #f0f8ff;
@@ -182,14 +190,20 @@ getNewGame();
     background: #badfff;
 }
 
+.btn:active {
+    transform: translateY(4px);
+    box-shadow:  5px 5px 10px #6c7074,
+             -5px -5px 10px #ffffff;
+}
+
 h3 {
     margin: 10px 0 0 0;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 select {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 2em;
+    font-size: 1.5em;
     border-radius: 20px;
     padding: 10px 20px;
     border-radius: 20px;
@@ -197,6 +211,11 @@ select {
     background: #f0f8ff;
     box-shadow:  inset 7px 7px 14px #b2b8bd,
             inset -7px -7px 14px #ffffff;
+}
+
+#info {
+    margin-bottom: 0;
+    max-width: 50%;
 }
 
 </style>

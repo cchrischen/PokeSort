@@ -5,7 +5,8 @@
       "half_damage_from": [],
       "half_damage_to": ["rock", "steel"],
       "no_damage_from": ["ghost"],
-      "no_damage_to": ["ghost"]
+      "no_damage_to": ["ghost"],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/normal.png"
     },
     "fighting": {
       "double_damage_from": ["flying", "psychic", "fairy"],
@@ -13,7 +14,8 @@
       "half_damage_from": ["rock", "bug", "dark"],
       "half_damage_to": ["flying", "poison", "bug", "psychic", "fairy"],
       "no_damage_from": [],
-      "no_damage_to": ["ghost"]
+      "no_damage_to": ["ghost"],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/fighting.png"
     },
     "flying": {
       "double_damage_from": ["rock", "electric", "ice"],
@@ -21,7 +23,8 @@
       "half_damage_from": ["fighting", "bug", "grass"],
       "half_damage_to": ["rock", "steel", "electric"],
       "no_damage_from": ["ground"],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/flying.png"
     },
     "poison": {
       "double_damage_from": ["ground", "psychic"],
@@ -29,7 +32,8 @@
       "half_damage_from": ["fighting", "poison", "bug", "grass", "fairy"],
       "half_damage_to": ["poison", "ground", "rock", "ghost"],
       "no_damage_from": [],
-      "no_damage_to": ["steel"]
+      "no_damage_to": ["steel"],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/poison.png"
     },
     "ground": {
       "double_damage_from": ["water", "grass", "ice"],
@@ -37,7 +41,8 @@
       "half_damage_from": ["poison", "rock"],
       "half_damage_to": ["bug", "grass"],
       "no_damage_from": ["electric"],
-      "no_damage_to": ["flying"]
+      "no_damage_to": ["flying"],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/ground.png"
     },
     "rock": {
       "double_damage_from": ["fighting", "ground", "steel", "water", "grass"],
@@ -45,7 +50,8 @@
       "half_damage_from": ["normal", "flying", "poison", "fire"],
       "half_damage_to": ["fighting", "ground", "steel"],
       "no_damage_from": [],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/rock.png"
     },
     "bug": {
       "double_damage_from": ["flying", "rock", "fire"],
@@ -53,7 +59,8 @@
       "half_damage_from": ["fighting", "ground", "grass"],
       "half_damage_to": ["fighting", "flying", "poison", "ghost", "steel", "fire", "fairy"],
       "no_damage_from": [],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/bug.png"
     },
     "ghost": {
       "double_damage_from": ["ghost", "dark"],
@@ -61,7 +68,8 @@
       "half_damage_from": ["poison", "bug"],
       "half_damage_to": ["dark"],
       "no_damage_from": ["normal", "fighting"],
-      "no_damage_to": ["normal"]
+      "no_damage_to": ["normal"],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/ghost.png"
     },
     "steel": {
       "double_damage_from": ["fighting", "ground", "fire"],
@@ -69,7 +77,8 @@
       "half_damage_from": ["normal", "flying", "rock", "bug", "steel", "grass", "psychic", "ice", "dragon", "fairy"],
       "half_damage_to": ["steel", "fire", "water", "electric"],
       "no_damage_from": ["poison"],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/steel.png"
     },
     "fire": {
       "double_damage_from": ["ground", "rock", "water"],
@@ -77,7 +86,8 @@
       "half_damage_from": ["bug", "steel", "fire", "grass", "ice", "fairy"],
       "half_damage_to": ["rock", "fire", "water", "dragon"],
       "no_damage_from": [],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/fire.png"
     },
     "water": {
       "double_damage_from": ["grass", "electric"],
@@ -85,7 +95,8 @@
       "half_damage_from": ["steel", "fire", "water", "ice"],
       "half_damage_to": ["water", "grass", "dragon"],
       "no_damage_from": [],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/water.png"
     },
     "grass": {
       "double_damage_from": ["flying", "poison", "bug", "fire", "ice"],
@@ -93,7 +104,8 @@
       "half_damage_from": ["ground", "water", "grass", "electric"],
       "half_damage_to": ["flying", "poison", "bug", "steel", "fire", "grass", "dragon"],
       "no_damage_from": [],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/grass.png"
     },
     "electric": {
       "double_damage_from": ["ground"],
@@ -101,7 +113,8 @@
       "half_damage_from": ["flying", "steel", "electric"],
       "half_damage_to": ["grass", "electric", "dragon"],
       "no_damage_from": [],
-      "no_damage_to": ["ground"]
+      "no_damage_to": ["ground"],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/electric.png"
     },
     "psychic": {
       "double_damage_from": ["bug", "ghost", "dark"],
@@ -109,7 +122,8 @@
       "half_damage_from": ["fighting", "psychic"],
       "half_damage_to": ["steel", "psychic"],
       "no_damage_from": [],
-      "no_damage_to": ["dark"]
+      "no_damage_to": ["dark"],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/psychic.png"
     },
     "ice": {
       "double_damage_from": ["fighting", "rock", "steel", "fire"],
@@ -117,7 +131,8 @@
       "half_damage_from": ["ice"],
       "half_damage_to": ["steel", "fire", "water", "ice"],
       "no_damage_from": [],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/ice.png"
     },
     "dragon": {
       "double_damage_from": ["ice", "dragon", "fairy"],
@@ -125,7 +140,8 @@
       "half_damage_from": ["fire", "water", "grass", "electric"],
       "half_damage_to": ["steel"],
       "no_damage_from": [],
-      "no_damage_to": ["fairy"]
+      "no_damage_to": ["fairy"],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/dragon.png"
     },
     "dark": {
       "double_damage_from": ["fighting", "bug", "fairy"],
@@ -133,7 +149,8 @@
       "half_damage_from": ["ghost", "dark"],
       "half_damage_to": ["fighting", "dark", "fairy"],
       "no_damage_from": ["psychic"],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/dark.png"
     },
     "fairy": {
       "double_damage_from": ["poison", "steel"],
@@ -141,6 +158,7 @@
       "half_damage_from": ["fighting", "bug", "dark"],
       "half_damage_to": ["poison", "steel", "fire"],
       "no_damage_from": ["dragon"],
-      "no_damage_to": []
+      "no_damage_to": [],
+      "icon": "https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/gen8/fairy.png"
     }
   }

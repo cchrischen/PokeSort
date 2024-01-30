@@ -7,7 +7,6 @@ const handleClose = () => faqShown.value = false;
 
 const faqShown = ref<boolean>(false);
 const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
-
 </script>
 
 <template>
@@ -15,8 +14,23 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
         <h1 class="title">
             How To Play
         </h1>
+        <p>
+            Your goal is to order the 6 randomly generated Pokemon based on a particular category.
+        </p>
+        <p>
+            You can select the category in the dropdown menu. The Base Stat category will randomly choose between the six base stats and base stat total.
+        </p>
+        <p>
+            A Pokemon species is defined as the Pokemon without regard to its form. For instance, the species of Mega Venusaur is Venusaur. The species of Alolan Raichu is Raichu. This will be important for Name Chain and National Dex.
+        </p>
+        <p>
+            Non-decreasing means that every element is greater than or equal to the element coming before it.
+        </p>
+        <p>
+            Have fun!
+        </p>
         <button class="closeButton" @click="handleClose">
-            Close
+            CLOSE
         </button>
     </div>
     
@@ -38,7 +52,6 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
 <style>
 
 .header{
-    
     padding: 20px 50px;
     display: flex;
     justify-content: space-between;
@@ -46,7 +59,6 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
 }
 
 .title {
-    font-family: 'Courier New', Courier, monospace;
     font-size: 2.5em;
     margin: 0;
 }
@@ -67,31 +79,28 @@ const faqVisibility = computed(() => faqShown.value ? "visible" : "hidden");
     position: fixed;
     background-color: #f0f8ff;
     width: 50%;
-    height: 75%;
     padding: 20px 50px;
-    left: 25%;
-    top: 12.5%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 .closeButton {
     border-radius: 10px;
     font-size: 20px;
-    background-color: lightcoral;
+    background-color: #f08080;
 }
 
 .closeButton:hover {
-    background-color:red;
+    background-color:#eb6868;
 }
 
-.menu {
-    position: fixed;
-    right: 10em;
-    top: 4em;
-    background-color:bisque;
-    padding: 1em;
-    display: flex;
+p {
+    margin: 0.5em 0;
 }
 </style>
