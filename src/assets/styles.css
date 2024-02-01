@@ -1,11 +1,13 @@
-#app, button {
-    font-family: 'Courier New', Courier, monospace;
+#app,
+button {
+  font-family: "Courier New", Courier, monospace;
 }
 
 p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-h1, h2 {
-    margin: 0
+h1,
+h2 {
+  margin: 0;
 }

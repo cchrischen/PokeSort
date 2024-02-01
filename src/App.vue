@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import HeaderTitle from './components/HeaderTitle.vue';
-  import GameContainer from './components/GameContainer.vue';
+import HeaderTitle from "./components/HeaderTitle.vue";
+import GameContainer from "./components/GameContainer.vue";
 </script>
 
 <template>
@@ -8,5 +8,4 @@
   <GameContainer />
 </template>
 
-<style>
-</style>
+<style></style>
