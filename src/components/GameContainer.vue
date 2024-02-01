@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PokeCard from "./PokeCard.vue"
+import TimeDisplay from "./TimeDisplay.vue";
 import { ref } from "vue";
 import draggable from "vuedraggable";
 import { rng, sleep } from "../util/util";
@@ -13,8 +14,9 @@ const getNewGame = () => {
     let soln;
     stat.value = undefined;
     statIdx.value = undefined;
-    gameState.value = 0;
     enabled.value = true;
+
+    startTime.value = new Date().valueOf();
 
     if (category.value == 0) {
         [soln, newMons] = get6Pokemon(-1);
@@ -32,20 +34,61 @@ const getNewGame = () => {
     solution.value = soln;
 }
 
-const checkAnswer = () => {
+const checkAnswer = async () => {
+    let cards = document.getElementsByClassName("box")!;
     if (checkWin(currentMons.value, category.value, statIdx.value ?? -1)) {
-        gameState.value = 1;
+
+        if (enabled.value) {
+            elapsedTime.value = new Date().valueOf() - startTime.value;
+            avgTime.value = (repetitions.value * avgTime.value + elapsedTime.value) / (repetitions.value + 1);
+            repetitions.value++;
+            bestTime.value = bestTime.value == -1 || elapsedTime.value < bestTime.value ? elapsedTime.value : bestTime.value;
+        }
+
         enabled.value = false;
+        await sleep(50);
+        cards = document.getElementsByClassName("box")!;
+        
+        for (let i = 0; i < cards.length; i++) {
+            console.log(cards[i])
+            cards[i].animate( [
+                { transform: "translateY(0px)" },
+                { transform: "translateY(-10px)" },
+                { transform: "translateY(-15px)" },
+                { transform: "translateY(-10px)" },
+                { transform: "translateY(0px)" },
+            ],
+            {
+                duration: 400,
+                iterations: 1
+            });
+            await sleep(100);
+        }
+
     } else {
-        gameState.value = -1;
+
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].animate( [
+                { transform: "translateX(-10px)" },
+                { transform: "translateX(0px)" },
+                { transform: "translateX(10px)" },
+                { transform: "translateX(0px)" },
+                { transform: "translateX(-10px)" },
+            ],
+            {
+                duration: 200,
+                iterations: 2
+            });
+        }
     }
 }
 
 const showSolution = async () => {
-    gameState.value = 1;
-    await sleep(100);
-    enabled.value = false;
-    currentMons.value = solution.value.map((el) =>{return {name: el}});
+    if (enabled.value) {    
+        enabled.value = false;
+        await sleep(100);
+        currentMons.value = solution.value.map((el) =>{return {name: el}});
+    }
 }
 
 const handleChange = (event: any) => {
@@ -57,7 +100,6 @@ const enabled = ref<boolean>(true);
 const category = ref<number>(0);
 const stat = ref<string|undefined>(undefined);
 const statIdx = ref<number|undefined>(undefined);
-const gameState = ref<number>(0);
 
 const dragOptions = ref({
   animation: 100,
@@ -66,23 +108,31 @@ const dragOptions = ref({
   dragClass: 'drag'
 });
 
+const startTime = ref<number>(new Date().valueOf());
+const elapsedTime = ref<number>(-1);
+const avgTime = ref<number>(-1);
+const bestTime = ref<number>(-1);
+const repetitions = ref<number>(0);
+
 getNewGame();
 </script>
 
 <template>
     <div id="container">
         <div class="desc">
-            <h1 id="title">Sort by:</h1>
-            <select @change="handleChange($event)">
-                <option v-for="category in gameCategories" :key="category.id" :value="category.id">
-                    {{ category.title }}
-                </option>
-            </select>
+            <div style="display: flex">
+                <h1 id="title">Sort by:</h1>
+                <select @change="handleChange($event)">
+                    <option v-for="category in gameCategories" :key="category.id" :value="category.id">
+                        {{ category.title }}
+                    </option>
+                </select>
+            </div>
             <h3 v-if="stat">{{ stat }}</h3>
             <h4 id="info">{{ gameCategories[category].info }}</h4>
         </div>
 
-        <div v-if="gameState != 1" class="order">
+        <div v-if="enabled" class="order">
             <draggable
             class="draggableRow"
             :list="currentMons"
@@ -111,6 +161,12 @@ getNewGame();
                 New Game
             </button>
         </div>
+
+        <div class="time">
+            <TimeDisplay :time="elapsedTime" title="Previous Time"/>
+            <TimeDisplay :time="bestTime" title="Best Time"/>
+            <TimeDisplay :time="avgTime" title="Average Time"/>
+        </div>
     </div>
 </template>
 
@@ -126,7 +182,7 @@ getNewGame();
 
 #title {
     font-size: 2.5em;
-    margin: 0 0 10px 0;
+    margin: 0 10px 0 0;
 }
 
 .desc{
@@ -153,7 +209,7 @@ getNewGame();
 .control {
     margin-top: 30px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     font-family: inherit;
 }
 
@@ -214,8 +270,15 @@ select {
 }
 
 #info {
-    margin-bottom: 0;
+    margin: 10px 0 0 0;
     max-width: 50%;
+}
+
+.time {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 </style>

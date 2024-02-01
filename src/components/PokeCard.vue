@@ -29,17 +29,17 @@
         </p>
         <img :src="sprite" height="125px" width="125px">
         <div v-if="!enabled" class="soln-info">
-            <h1>
+            <h1 class="name">
                 {{ pokemonData[dex].name }}
             </h1>
 
-            <h2 v-if="category == 0">
+            <h2 v-if="category == 0" class="extrainfo">
                 {{ pokemonData[dex].dex }}
             </h2>
-            <h2 v-else-if="category == 1">
+            <h2 v-else-if="category == 1" class="extrainfo">
                 {{ pokemonData[dex].stats[stat ?? 0] }}
             </h2>
-            <h2 v-else-if="category == 2">
+            <h2 v-else-if="category == 2" class="extrainfo">
                 <img class="type" v-for="t in types" :key="t" :src="TypeData[t].icon" height="40px" weight="40px">
             </h2>
         </div>
@@ -69,6 +69,16 @@
 
 .type {
     margin: 0px 5px;
+}
+
+.name {
+    margin: 0;
+    font-size:1.4em;
+}
+
+.extrainfo {
+    margin: 0;
+    font-size: 1.25em;
 }
 
 </style>
