@@ -121,6 +121,10 @@ const showSolution = async () => {
 
 const handleChange = (event: any) => {
   category.value = parseInt(event.target.value);
+  elapsedTime.value = -1;
+  avgTime.value = -1;
+  bestTime.value = -1;
+
   getNewGame();
 };
 
@@ -137,7 +141,7 @@ getNewGame();
 <template>
   <div id="container">
     <div class="desc">
-      <div style="display: flex">
+      <div style="display: flex; flex-wrap: wrap; justify-content: center;">
         <h1 id="title">Sort by:</h1>
         <select @change="handleChange($event)">
           <option
@@ -210,7 +214,6 @@ getNewGame();
 }
 
 #title {
-  font-size: 2.5em;
   margin: 0 10px 0 0;
 }
 
@@ -294,7 +297,7 @@ select {
   border-radius: 20px;
   padding: 10px 20px;
   border-radius: 20px;
-  border: none;
+  border: 1px solid black;
   background: #f0f8ff;
   box-shadow:
     inset 7px 7px 14px #b2b8bd,
@@ -303,7 +306,7 @@ select {
 
 #info {
   margin: 10px 0 0 0;
-  max-width: 50%;
+  max-width: 75%;
 }
 
 .time {
@@ -312,4 +315,15 @@ select {
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+@media only screen and (max-width: 768px) {
+  [class="btn"] {
+    font-size: 1em;
+  }
+
+  select {
+    font-size: 1em;
+  }
+}
+
 </style>

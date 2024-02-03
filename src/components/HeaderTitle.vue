@@ -11,7 +11,7 @@ const faqVisibility = computed(() => (faqShown.value ? "visible" : "hidden"));
 
 <template>
   <div class="faq" :style="{ visibility: faqVisibility }">
-    <h1 class="title">How To Play</h1>
+    <h1>How To Play</h1>
     <p>
       Your goal is to order the 6 randomly generated Pokemon based on a
       particular category.
@@ -50,11 +50,6 @@ const faqVisibility = computed(() => (faqShown.value ? "visible" : "hidden"));
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.title {
-  font-size: 2.5em;
-  margin: 0;
 }
 
 .icon {
@@ -96,5 +91,11 @@ const faqVisibility = computed(() => (faqShown.value ? "visible" : "hidden"));
 
 p {
   margin: 0.5em 0;
+}
+
+@media only screen and (max-width: 768px) {
+  p {
+    font-size: 12.5px;
+  }
 }
 </style>

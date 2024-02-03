@@ -31,7 +31,7 @@ const cursorStatus = computed(() =>
     <p class="orderNum" style="font-size: 1em; font-weight: bold">
       {{ (order ?? -1) + 1 }}
     </p>
-    <img :src="sprite" height="125px" width="125px" />
+    <img :src="sprite" height="125px" width="125px" class="sprite"/>
     <div v-if="!enabled" class="soln-info">
       <h1 class="name">
         {{ pokemonData[dex].name }}
@@ -60,7 +60,7 @@ const cursorStatus = computed(() =>
 <style>
 .box {
   margin: 20px 10px;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,5 +91,20 @@ const cursorStatus = computed(() =>
 .extrainfo {
   margin: 0;
   font-size: 1.25em;
+}
+
+@media only screen and (max-width: 768px) {
+  [class="name"] {
+    font-size: 1em;
+  }
+
+  [class="extrainfo"] {
+    font-size: 0.9em;
+  }
+
+  [class="type"] {
+    height: 20px;
+    width: auto;
+  }
 }
 </style>

@@ -15,11 +15,11 @@ const msec = computed(() => `${date.value.getMilliseconds()}`.padStart(3, "0"));
 
 <template>
   <div class="clock">
-    <h1 v-if="time == -1">-</h1>
-    <h1 v-else>
+    <h1 v-if="time == -1" class="timeVal">-</h1>
+    <h1 v-else class="timeVal">
       {{ `${min}:${sec}:${msec}` }}
     </h1>
-    <h2>{{ title }}</h2>
+    <h2 class="timeTitle">{{ title }}</h2>
   </div>
 </template>
 
@@ -29,4 +29,23 @@ const msec = computed(() => `${date.value.getMilliseconds()}`.padStart(3, "0"));
   flex-direction: column;
   align-items: center;
 }
+
+.timeVal {
+  font-size: 1.5em;
+}
+
+.timeTitle {
+  font-size: 1.25em;
+}
+
+@media only screen and (max-width: 768px) {
+  [class="timeVal"] {
+    font-size: 1.25em;
+  }
+
+  [class="timeTitle"] {
+    font-size: 1em;
+  }
+}
+
 </style>
